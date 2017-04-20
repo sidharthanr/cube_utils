@@ -1,0 +1,5 @@
+
+RUN PGM=NETWORK
+FILEI NETI="C:\Temp\Research\SampleCubeNet\S7_10_20170402_2.net"
+FILEO LINKO ="C:\Temp\Research\SampleCubeNet\S7_10_20170402_2.shp" FORMAT=SHP
+ENDRUN
