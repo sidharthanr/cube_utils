@@ -1,0 +1,1 @@
+runNetworkcompare.bat "C:\Temp\Research\SampleCubeNet" "S7_2010_7071.net" Skip NoSkip
