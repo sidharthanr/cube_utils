@@ -34,4 +34,3 @@ if NOT %skipNode%==Skip (
 echo ENDRUN                                                         >> %netLocation%\NetworkToShape.s  
 
 %VOYAGER% %netLocation%\NetworkToShape.s /Start
-pause
