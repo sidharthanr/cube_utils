@@ -10,8 +10,7 @@ echo %netName%
 set "netNamebegin=%netName:.net="^&REM #%
 
 
-rem start /wait netExport.bat %netLocation% %netName%  Skip NoSkip
-call netExport.bat %netLocation% %netName%  Skip NoSkip
+rem call netExport.bat %netLocation% %netName%  Skip NoSkip
 
 %RLOC%\bin\RScript.exe --vanilla --verbose "BrowseCubeTransit.r" > %netLocation%\BrowseCubeTransit.log  %netLocation% %netNamebegin% %trnName% 2>&1
 pause

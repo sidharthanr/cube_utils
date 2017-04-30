@@ -7,18 +7,20 @@ header <- dashboardHeader(
 
 body <- dashboardBody(
   fluidRow(
-    column(width = 9,
+    column(width = 9,	
       box(width = NULL, solidHeader = TRUE,
         leafletOutput("busmap", height = 850)
       )
       
     ),
     column(width = 3,
+	  uiOutput("routeSelectCombo"),
+	  p(h3('Select Second Route (in Green)')),
     wellPanel(id = "tPanel",style = "overflow-y:scroll; max-height: 400px",width = NULL, status = "warning",
-           uiOutput("routeSelectrADIO")
+           uiOutput("routeSelectRadio")
       ),
-      box(width = NULL, status = "warning",
-        #uiOutput("routeSelect"),
+	  p(h3('Second Line Details')),
+      box(width = NULL, status = "warning",        
         htmlOutput("message")
       )
     )
