@@ -1,4 +1,4 @@
-# Raghu Sidharthan 6/1/2016
+# Raghu Sidharthan
 
 #TODO
 #1. Write a trnsit line write function which parses after a certain number of characters in each row. end with a comma
@@ -6,7 +6,7 @@
 
 
 # Function to concat a set of lines
-# PArameter allLines is a set of lines
+# Parameter allLines is a set of lines
 # sttNum is the start index number and stpNum is the stop index number
 concatLines <- function(allLines,sttNum,stpNum){
   return(paste0(unlist(str_trim(allLines[sttNum:stpNum])),collapse = ''))
@@ -37,13 +37,6 @@ replaceLineNodesUntil <- function(lineNodesUntil,keywordStr,valStr){
     }
   }
 }
-#check <- allLines_Y15[1][[1]]$lineNodesUntil
-#check
-#replaceLineNodesUntil(check,'HEADWAY\\[1\\]',99)
-#replaceLineNodesUntil(check,'HEADWAY\\[2\\]',99)
-#replaceLineNodesUntil(check,'HEADWAY\\[3\\]',99)
-#replaceLineNodesUntil(check,'HEADWAY\\[1\\]',-1)
-#replaceLineNodesUntil(check,'HEADWAY\\[3\\]',-1)
 
 extractKeyword <- function(lineNodesUntilSample,keywordStr){
   retval <- "-99"
@@ -96,7 +89,7 @@ extractEndOfString <- function(strArg){
   }else if(strStartType=="'"){
     retval <- substr(strArg,2, regexpr("[']",strArgRest)[1])
   }else{
-    retval <- substr(strArg,1, regexpr('[ ]',strArgRest)[1])
+    retval <- substr(strArg,1, regexpr('[ ,]',strArgRest)[1])
   }
   return(retval)
 }
