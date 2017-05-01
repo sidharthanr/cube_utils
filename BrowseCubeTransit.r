@@ -20,11 +20,12 @@ DrName <- arguments[1]
 shapeName <- paste0(arguments[2],'_node')
 lineName <- arguments[3]
 
-serpmCRS <- ("+proj=tmerc +lat_0=24.33333333333333 +lon_0=-81 +k=0.9999411764705882 +x_0=199999.9999999999 +y_0=0
+serpmCRS <- CRS("+proj=tmerc +lat_0=24.33333333333333 +lon_0=-81 +k=0.9999411764705882 +x_0=199999.9999999999 +y_0=0
              +datum=NAD83 +units=us-ft +no_defs +ellps=GRS80 +towgs84=0,0,0")
+ARCCRS <- CRS('+init=ESRI:102667')
 
 setProjWeb <- function(inSh,origPrj){
-  inSh@proj4string <- CRS(origPrj)
+  inSh@proj4string <- (origPrj)
   inSh  <- spTransform(inSh, CRS("+init=epsg:4269"))
 }
 cropByCen <- function(inSh,x1,x2,y1,y2){
