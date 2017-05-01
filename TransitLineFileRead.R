@@ -75,7 +75,7 @@ extractHeadWays <- function(lineNodesUntilSample){
 
 extractNodesVector <- function(lineNodesSample){
   # Return the nodes in a vector format 
-  temp1 <- str_split(gsub(' ',',',gsub('  ',' ',gsub('N =',' ',gsub('N=',' ',gsub(',',' ',lineNodesSample))))),',')
+  temp1 <- str_split(gsub(' ',',',gsub('  ',' ',gsub('NODES =',' ',gsub('NODES=',' ',gsub('N =',' ',gsub('N=',' ',gsub(',',' ',lineNodesSample))))))),',')
   temp2 <- lapply(temp1,function(x) grep("^[-0123456789]", x))
   nodeVector <- lapply(unlist(temp1)[unlist(temp2)],as.integer)
   return(nodeVector)
@@ -117,8 +117,12 @@ readTLFile <- function(TL_fname){
   temp1 <- lapply(linesComplete,function(x) substr(x,regexpr('LONGNAME=',x)[1]+9,nchar(x)) )
   lineLongNames <- unlist(lapply(temp1,function(x) extractEndOfString(x) ))
 
-  lineNodesUntil <- lapply(linesComplete,function(x) substr(x,1,gregexpr('N=',x)[[1]][1]-1) )
-  lineNodes      <- lapply(linesComplete,function(x) substr(x,gregexpr('N=',x)[[1]][1],nchar(x)) )
+  lineNodesUntil <- lapply(linesComplete,function(x) substr(x,1,ifelse(gregexpr('N=',x)[[1]][1]>1,
+                                                                       gregexpr('N=',x)[[1]][1],
+                                                                       gregexpr('NODES=',x)[[1]][1])-1) )
+  lineNodes      <- lapply(linesComplete,function(x) substr(x,ifelse(gregexpr('N=',x)[[1]][1]>1,
+                                                                     gregexpr('N=',x)[[1]][1],
+                                                                     gregexpr('NODES=',x)[[1]][1]),nchar(x)) )
   
   nodeVector <- lapply(lineNodes,extractNodesVector)
   lineHeadway <- lapply(lineNodesUntil,extractHeadWays)
