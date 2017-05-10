@@ -141,7 +141,8 @@ readTLFile <- function(TL_fname){
                              nodeVector=unlist(nodeVector[x]),
                              linesComplete=unlist(linesComplete[x]),
                              lineHeadway= unlist(lineHeadway[x]),
-                             lineMode=unlist(lineMode[x])
+                             lineMode=unlist(lineMode[x]),
+                             lineNumber= x
                              ))
   names(retObject) <- lineNames
   
