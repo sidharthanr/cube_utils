@@ -127,6 +127,7 @@ readTLFile <- function(TL_fname){
   nodeVector <- lapply(lineNodes,extractNodesVector)
   lineHeadway <- lapply(lineNodesUntil,extractHeadWays)
   
+  lineSpeed <- lapply(linesComplete, function(x) ifelse(is.na(str_match(x, "SPEED=(.*?),")[,2]), "", str_match(x, "SPEED=(.*?),")[,2])) #for now, only get the first SPEED
   
   
   lineMode <- lapply(lineNodesUntil,extractKeyword,'MODE')
@@ -141,11 +142,11 @@ readTLFile <- function(TL_fname){
                              nodeVector=unlist(nodeVector[x]),
                              linesComplete=unlist(linesComplete[x]),
                              lineHeadway= unlist(lineHeadway[x]),
+                             lineSpeed=unlist(lineSpeed[x]),
                              lineMode=unlist(lineMode[x]),
                              lineNumber= x
                              ))
   names(retObject) <- lineNames
-  
   return(retObject)
 }
 
